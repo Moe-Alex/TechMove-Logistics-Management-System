@@ -45,6 +45,8 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
+app.UseStaticFiles();
+
 app.UseCors("AllowMvcClient");
 
 app.UseAuthorization();

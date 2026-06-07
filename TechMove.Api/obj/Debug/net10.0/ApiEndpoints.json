@@ -198,6 +198,80 @@
   },
   {
     "ContainingType": "TechMove.Api.Controllers.ContractsApiController",
+    "Method": "UpdateContract",
+    "RelativePath": "api/contracts/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "TechMove.Api.DTOs.UpdateContractDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TechMove.Api.Controllers.ContractsApiController",
+    "Method": "DeleteContract",
+    "RelativePath": "api/contracts/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TechMove.Api.Controllers.ContractsApiController",
+    "Method": "UploadAgreement",
+    "RelativePath": "api/contracts/{id}/agreement",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TechMove.Api.Controllers.ContractsApiController",
+    "Method": "DownloadAgreement",
+    "RelativePath": "api/contracts/{id}/agreement",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TechMove.Api.Controllers.ContractsApiController",
     "Method": "UpdateContractStatus",
     "RelativePath": "api/contracts/{id}/status",
     "HttpMethod": "PATCH",
