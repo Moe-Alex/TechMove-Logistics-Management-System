@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TechMove.Api.Repositories;
+using TechMove.Api.DTOs;
+using TechMove.Api.Services;
 
 namespace TechMove.Api.Controllers
 {
@@ -7,46 +8,69 @@ namespace TechMove.Api.Controllers
     [Route("api/clients")]
     public class ClientsApiController : ControllerBase
     {
-        private readonly IClientRepository _clientRepository;
+        private readonly IClientApiService _clientApiService;
 
-        public ClientsApiController(IClientRepository clientRepository)
+        public ClientsApiController(IClientApiService clientApiService)
         {
-            _clientRepository = clientRepository;
+            _clientApiService = clientApiService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetClients()
+        public async Task<ActionResult<List<ClientDto>>> GetClients()
         {
-            var clients = await _clientRepository.GetAllAsync();
+            var clients = await _clientApiService.GetAllAsync();
 
-            var result = clients.Select(c => new
-            {
-                c.Id,
-                c.Name,
-                c.ContactDetails,
-                c.Region
-            });
-
-            return Ok(result);
+            return Ok(clients);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetClientById(int id)
+        public async Task<ActionResult<ClientDto>> GetClientById(int id)
         {
-            var client = await _clientRepository.GetByIdAsync(id);
+            var client = await _clientApiService.GetByIdAsync(id);
 
             if (client == null)
             {
                 return NotFound(new { message = "Client not found." });
             }
 
-            return Ok(new
+            return Ok(client);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ClientDto>> CreateClient(CreateClientDto dto)
+        {
+            var createdClient = await _clientApiService.CreateAsync(dto);
+
+            return CreatedAtAction(
+                nameof(GetClientById),
+                new { id = createdClient.Id },
+                createdClient);
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> UpdateClient(int id, UpdateClientDto dto)
+        {
+            var updated = await _clientApiService.UpdateAsync(id, dto);
+
+            if (!updated)
             {
-                client.Id,
-                client.Name,
-                client.ContactDetails,
-                client.Region
-            });
+                return NotFound(new { message = "Client not found." });
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeleteClient(int id)
+        {
+            var deleted = await _clientApiService.DeleteAsync(id);
+
+            if (!deleted)
+            {
+                return NotFound(new { message = "Client not found." });
+            }
+
+            return NoContent();
         }
     }
 }

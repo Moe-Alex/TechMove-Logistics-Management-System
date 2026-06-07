@@ -20,6 +20,8 @@ builder.Services.AddScoped<FileService>();
 builder.Services.AddScoped<ContractValidationService>();
 
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IClientApiService, ClientApiService>();
+
 builder.Services.AddScoped<IContractRepository, ContractRepository>();
 builder.Services.AddScoped<IContractApiService, ContractApiService>();
 
