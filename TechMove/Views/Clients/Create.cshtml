@@ -1,0 +1,49 @@
+﻿@model TechMove.Models.Client
+
+@{
+    ViewData["Title"] = "Create Client";
+}
+
+<div class="entity-page">
+    <div class="form-card">
+        <div class="record-header">
+            <div>
+                <h1 class="entity-title mb-2">Create Client</h1>
+                <p class="entity-subtitle">Add a new client record with contact details and operational region.</p>
+            </div>
+        </div>
+
+        <form asp-action="Create" class="styled-form">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="form-label styled-label"></label>
+                <input asp-for="Name" class="form-control styled-input" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ContactDetails" class="form-label styled-label">Contact Details</label>
+                <input asp-for="ContactDetails" class="form-control styled-input" />
+                <span asp-validation-for="ContactDetails" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-4">
+                <label asp-for="Region" class="form-label styled-label"></label>
+                <input asp-for="Region" class="form-control styled-input" />
+                <span asp-validation-for="Region" class="text-danger"></span>
+            </div>
+
+            <div class="record-actions">
+                <input type="submit" value="Create Client" class="btn record-btn record-btn-primary" />
+                <a asp-action="Index" class="btn record-btn record-btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

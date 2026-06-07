@@ -1,0 +1,131 @@
+﻿@model IEnumerable<TechMove.Models.Contract>
+@using TechMove.Models.Enums
+
+@{
+    ViewData["Title"] = "Contracts";
+    var role = ViewBag.Role as string;
+}
+
+<div class="entity-page">
+    <div class="entity-header entity-header-stacked">
+        <div>
+            <h1 class="entity-title">Contracts</h1>
+            <p class="entity-subtitle">
+                Manage contract records, service levels, agreement files, and lifecycle statuses.
+            </p>
+        </div>
+    </div>
+
+    @if (role == "Admin")
+    {
+        <div class="filter-card mb-4">
+            <div class="filter-card-header">
+                <h4 class="filter-title">Contract Filter</h4>
+                <p class="filter-subtitle">Filter contracts by status and date range.</p>
+            </div>
+
+            <form method="get" asp-action="Index" class="filter-form">
+                <div class="filter-grid">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select name="Status" class="form-control styled-input">
+                            <option value="">-- All --</option>
+                            @foreach (ContractStatus status in Enum.GetValues(typeof(ContractStatus)))
+                            {
+                                if (ViewBag.SelectedStatus != null && ViewBag.SelectedStatus.ToString() == status.ToString())
+                                {
+                                    <option value="@status" selected>@status</option>
+                                }
+                                else
+                                {
+                                    <option value="@status">@status</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Start Date From</label>
+                        <input type="date" name="StartDateFrom" value="@ViewBag.StartDateFrom" class="form-control styled-input" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>End Date To</label>
+                        <input type="date" name="EndDateTo" value="@ViewBag.EndDateTo" class="form-control styled-input" />
+                    </div>
+                </div>
+
+                <div class="filter-actions">
+                    <button type="submit" class="btn record-btn record-btn-primary">Filter</button>
+                    <a asp-action="Index" class="btn record-btn record-btn-secondary">Clear</a>
+                </div>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="filter-warning mb-4">
+            This filter function is available to Admin users only.
+        </div>
+    }
+
+    <div class="entity-header-action mb-3">
+        <a asp-action="Create" class="btn entity-create-btn">
+            + Create New Contract
+        </a>
+    </div>
+
+    <div class="entity-table-card">
+        <table class="table entity-table mb-0">
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                    <th>Service Level</th>
+                    <th>Agreement</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@item.Client?.Name</td>
+                            <td>@item.StartDate.ToString("yyyy/MM/dd")</td>
+                            <td>@item.EndDate.ToString("yyyy/MM/dd")</td>
+                            <td>@item.Status</td>
+                            <td>@item.ServiceLevel</td>
+                            <td>
+                                @if (!string.IsNullOrWhiteSpace(item.SignedAgreementFilePath))
+                                {
+                                    <a asp-action="DownloadAgreement" asp-route-id="@item.Id" class="btn record-btn record-btn-secondary btn-sm">
+                                        Download PDF
+                                    </a>
+                                }
+                            </td>
+                            <td class="text-center">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="entity-action-link entity-action-details">Details</a>
+                                <span class="entity-action-divider">|</span>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="entity-action-link entity-action-edit">Edit</a>
+                                <span class="entity-action-divider">|</span>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="entity-action-link entity-action-delete">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="text-center py-4 text-muted">
+                            No contracts found. Create your first contract to get started.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

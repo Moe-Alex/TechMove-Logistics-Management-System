@@ -1,0 +1,71 @@
+﻿@model IEnumerable<TechMove.Models.ServiceRequest>
+
+@{
+    ViewData["Title"] = "Service Requests";
+}
+
+<div class="entity-page">
+    <div class="entity-header entity-header-stacked">
+        <div>
+            <h1 class="entity-title">Service Requests</h1>
+            <p class="entity-subtitle">
+                Create and manage service requests linked to contracts, including currency conversion from USD to ZAR.
+            </p>
+
+            <div class="entity-header-action">
+                <a asp-action="Create" class="btn entity-create-btn">
+                    + Create New Service Request
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="entity-table-card">
+        <table class="table entity-table mb-0">
+            <thead>
+                <tr>
+                    <th>Contract</th>
+                    <th>Client</th>
+                    <th>Description</th>
+                    <th>Cost USD</th>
+                    <th>Rate</th>
+                    <th>Local Cost ZAR</th>
+                    <th>Status</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@item.ContractId</td>
+                            <td>@item.Contract?.Client?.Name</td>
+                            <td>@item.Description</td>
+                            <td>@item.CostUSD</td>
+                            <td>@item.ExchangeRateUsed</td>
+                            <td>@item.LocalCostZAR</td>
+                            <td>@item.Status</td>
+                            <td class="text-center">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="entity-action-link entity-action-details">Details</a>
+                                <span class="entity-action-divider">|</span>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="entity-action-link entity-action-edit">Edit</a>
+                                <span class="entity-action-divider">|</span>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="entity-action-link entity-action-delete">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="8" class="text-center py-4 text-muted">
+                            No service requests found. Create your first service request to get started.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿@model TechMove.Models.Contract
+@using TechMove.Models.Enums
+
+@{
+    ViewData["Title"] = "Edit Contract";
+}
+
+<div class="entity-page">
+    <div class="form-card">
+        <div class="record-header">
+            <div>
+                <h1 class="entity-title mb-2">Edit Contract</h1>
+                <p class="entity-subtitle">Update contract information and replace the signed agreement if needed.</p>
+            </div>
+        </div>
+
+        <form asp-action="Edit" enctype="multipart/form-data" class="styled-form">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="SignedAgreementFilePath" />
+            <input type="hidden" asp-for="SignedAgreementOriginalFileName" />
+
+            <div class="form-group mb-3">
+                <label asp-for="ClientId" class="form-label styled-label">Client</label>
+                <select asp-for="ClientId" asp-items="ViewBag.ClientId" class="form-control styled-input"></select>
+                <span asp-validation-for="ClientId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="StartDate" class="form-label styled-label">Start Date</label>
+                <input asp-for="StartDate" class="form-control styled-input" type="date" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="EndDate" class="form-label styled-label">End Date</label>
+                <input asp-for="EndDate" class="form-control styled-input" type="date" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Status" class="form-label styled-label"></label>
+                <select asp-for="Status" asp-items="Html.GetEnumSelectList<ContractStatus>()" class="form-control styled-input"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ServiceLevel" class="form-label styled-label">Service Level</label>
+                <input asp-for="ServiceLevel" class="form-control styled-input" />
+                <span asp-validation-for="ServiceLevel" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="signedAgreementFile" class="form-label styled-label">Replace Signed Agreement (PDF)</label>
+                <input type="file" name="signedAgreementFile" class="form-control styled-input" accept=".pdf" />
+                <span class="text-danger">@Html.ValidationMessage("signedAgreementFile")</span>
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(Model.SignedAgreementFilePath))
+            {
+                <div class="form-group mb-4">
+                    <a asp-action="DownloadAgreement" asp-route-id="@Model.Id" class="btn record-btn record-btn-secondary">
+                        Download Current PDF
+                    </a>
+                </div>
+            }
+
+            <div class="record-actions">
+                <input type="submit" value="Save Changes" class="btn record-btn record-btn-primary" />
+                <a asp-action="Index" class="btn record-btn record-btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

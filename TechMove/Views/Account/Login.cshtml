@@ -1,0 +1,50 @@
+﻿@model TechMove.Models.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="login-page">
+    <div class="login-overlay"></div>
+
+    <div class="login-wrapper">
+        <div class="login-brand">
+            <h1>TechMove</h1>
+            <p>Global Logistics Management System</p>
+        </div>
+
+        <div class="login-card">
+            <h2>Sign In</h2>
+            <p class="login-subtitle">Access the enterprise logistics platform</p>
+
+            <form asp-action="Login" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label"></label>
+                    <input asp-for="Username" class="form-control login-input" placeholder="Enter your username" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control login-input" placeholder="Enter your password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn login-btn w-100">Login</button>
+            </form>
+
+            <div class="login-demo mt-4">
+                <p><strong>Admin:</strong> Admin / Admin1</p>
+                <p><strong>User:</strong> User / User1</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

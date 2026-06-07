@@ -1,0 +1,60 @@
+﻿@model TechMove.Models.Contract
+
+@{
+    ViewData["Title"] = "Contract Details";
+}
+
+<div class="entity-page">
+    <div class="record-card">
+        <div class="record-header">
+            <div>
+                <h1 class="entity-title mb-2">Contract Details</h1>
+                <p class="entity-subtitle">View the selected contract record and agreement information.</p>
+            </div>
+        </div>
+
+        <div class="record-details">
+            <div class="record-row">
+                <div class="record-label">Client</div>
+                <div class="record-value">@Model.Client?.Name</div>
+            </div>
+
+            <div class="record-row">
+                <div class="record-label">Start Date</div>
+                <div class="record-value">@Model.StartDate.ToString("yyyy/MM/dd")</div>
+            </div>
+
+            <div class="record-row">
+                <div class="record-label">End Date</div>
+                <div class="record-value">@Model.EndDate.ToString("yyyy/MM/dd")</div>
+            </div>
+
+            <div class="record-row">
+                <div class="record-label">Status</div>
+                <div class="record-value">@Model.Status</div>
+            </div>
+
+            <div class="record-row">
+                <div class="record-label">Service Level</div>
+                <div class="record-value">@Model.ServiceLevel</div>
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(Model.SignedAgreementFilePath))
+            {
+                <div class="record-row">
+                    <div class="record-label">Signed Agreement</div>
+                    <div class="record-value">
+                        <a asp-action="DownloadAgreement" asp-route-id="@Model.Id" class="btn record-btn record-btn-secondary">
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="record-actions">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn record-btn record-btn-primary">Edit Contract</a>
+            <a asp-action="Index" class="btn record-btn record-btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>

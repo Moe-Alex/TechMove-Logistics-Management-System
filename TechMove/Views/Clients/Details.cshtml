@@ -1,0 +1,38 @@
+﻿@model TechMove.Models.Client
+
+@{
+    ViewData["Title"] = "Client Details";
+}
+
+<div class="entity-page">
+    <div class="record-card">
+        <div class="record-header">
+            <div>
+                <h1 class="entity-title mb-2">Client Details</h1>
+                <p class="entity-subtitle">View the selected client’s information and operational details.</p>
+            </div>
+        </div>
+
+        <div class="record-details">
+            <div class="record-row">
+                <div class="record-label">Name</div>
+                <div class="record-value">@Model.Name</div>
+            </div>
+
+            <div class="record-row">
+                <div class="record-label">Contact Details</div>
+                <div class="record-value">@Model.ContactDetails</div>
+            </div>
+
+            <div class="record-row">
+                <div class="record-label">Region</div>
+                <div class="record-value">@Model.Region</div>
+            </div>
+        </div>
+
+        <div class="record-actions">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn record-btn record-btn-primary">Edit Client</a>
+            <a asp-action="Index" class="btn record-btn record-btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>

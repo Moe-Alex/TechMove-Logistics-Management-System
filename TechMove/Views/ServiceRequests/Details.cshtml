@@ -1,0 +1,60 @@
+﻿@model TechMove.Models.ServiceRequest
+
+@{
+    ViewData["Title"] = "Service Request Details";
+}
+
+<div class="entity-page">
+    <div class="record-card">
+        <div class="record-header">
+            <div>
+                <h1 class="entity-title mb-2">Service Request Details</h1>
+                <p class="entity-subtitle">
+                    View the selected service request, contract reference, and exchange calculation details.
+                </p>
+            </div>
+        </div>
+
+        <div class="record-details">
+            <div class="record-row">
+                <div class="record-label">Contract</div>
+                <div class="record-value">@Model.ContractId</div>
+            </div>
+
+            <div class="record-row">
+                <div class="record-label">Client</div>
+                <div class="record-value">@Model.Contract?.Client?.Name</div>
+            </div>
+
+            <div class="record-row">
+                <div class="record-label">Description</div>
+                <div class="record-value">@Model.Description</div>
+            </div>
+
+            <div class="record-row">
+                <div class="record-label">Cost USD</div>
+                <div class="record-value">@Model.CostUSD</div>
+            </div>
+
+            <div class="record-row">
+                <div class="record-label">Exchange Rate Used</div>
+                <div class="record-value">@Model.ExchangeRateUsed</div>
+            </div>
+
+            <div class="record-row">
+                <div class="record-label">Local Cost ZAR</div>
+                <div class="record-value">@Model.LocalCostZAR</div>
+            </div>
+
+            <div class="record-row">
+                <div class="record-label">Status</div>
+                <div class="record-value">@Model.Status</div>
+            </div>
+        </div>
+
+        <div class="record-actions">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn record-btn record-btn-primary">Edit Service Request</a>
+            <a asp-action="Index" class="btn record-btn record-btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>

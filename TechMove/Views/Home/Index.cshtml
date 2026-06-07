@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="dashboard-page">
+    <div class="dashboard-hero text-center">
+        <h1>Welcome to TechMove</h1>
+        <p class="dashboard-subtitle">
+            Enterprise logistics management platform for clients, contracts, and service requests.
+        </p>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="dashboard-card dashboard-card-blue">
+            <div class="dashboard-card-body">
+                <h3>Client Management</h3>
+                <p>
+                    Create, edit, and manage client records including contact details and operational regions.
+                </p>
+                <a asp-controller="Clients" asp-action="Index" class="btn dashboard-btn dashboard-btn-blue">
+                    Open Clients
+                </a>
+            </div>
+        </div>
+
+        <div class="dashboard-card dashboard-card-green">
+            <div class="dashboard-card-body">
+                <h3>Contract Management</h3>
+                <p>
+                    Manage contracts, track statuses, upload signed PDF agreements, and monitor service levels.
+                </p>
+                <a asp-controller="Contracts" asp-action="Index" class="btn dashboard-btn dashboard-btn-green">
+                    Open Contracts
+                </a>
+            </div>
+        </div>
+
+        <div class="dashboard-card dashboard-card-gold">
+            <div class="dashboard-card-body">
+                <h3>Service Requests</h3>
+                <p>
+                    Capture logistics service requests, validate contract status, and process currency conversion to ZAR.
+                </p>
+                <a asp-controller="ServiceRequests" asp-action="Index" class="btn dashboard-btn dashboard-btn-gold">
+                    Open Service Requests
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-extra">
+        <div class="dashboard-info-card">
+            <h4>System Overview</h4>
+            <p>
+                TechMove helps logistics managers centralise business operations in one place by linking clients,
+                contracts, and requests in a structured enterprise workflow.
+            </p>
+        </div>
+
+        <div class="dashboard-info-card">
+            <h4>Quick Navigation</h4>
+            <ul class="dashboard-list">
+                <li>Maintain client records and regional details</li>
+                <li>Monitor contract lifecycle and agreement files</li>
+                <li>Raise and track service requests against valid contracts</li>
+            </ul>
+        </div>
+    </div>
+</div>

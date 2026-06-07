@@ -1,0 +1,45 @@
+﻿@model TechMove.Models.Client
+
+@{
+    ViewData["Title"] = "Delete Client";
+}
+
+<div class="entity-page">
+    <div class="record-card record-card-danger">
+        <div class="record-header">
+            <div>
+                <h1 class="entity-title mb-2">Delete Client</h1>
+                <p class="entity-subtitle text-danger-emphasis">
+                    Are you sure you want to permanently delete this client?
+                </p>
+            </div>
+        </div>
+
+        <div class="record-warning">
+            This action cannot be undone. Please confirm before deleting this client record.
+        </div>
+
+        <div class="record-details">
+            <div class="record-row">
+                <div class="record-label">Name</div>
+                <div class="record-value">@Model.Name</div>
+            </div>
+
+            <div class="record-row">
+                <div class="record-label">Contact Details</div>
+                <div class="record-value">@Model.ContactDetails</div>
+            </div>
+
+            <div class="record-row">
+                <div class="record-label">Region</div>
+                <div class="record-value">@Model.Region</div>
+            </div>
+        </div>
+
+        <form asp-action="Delete" class="record-actions">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Delete Client" class="btn record-btn record-btn-danger" />
+            <a asp-action="Index" class="btn record-btn record-btn-secondary">Back to List</a>
+        </form>
+    </div>
+</div>

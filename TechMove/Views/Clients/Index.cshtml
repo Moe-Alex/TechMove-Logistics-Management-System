@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TechMove.Models.Client>
+
+@{
+    ViewData["Title"] = "Clients";
+}
+
+<div class="entity-page">
+    <div class="entity-header entity-header-stacked">
+        <div>
+            <h1 class="entity-title">Clients</h1>
+            <p class="entity-subtitle">
+                Manage client records, contact information, and operational regions.
+            </p>
+
+            <div class="entity-header-action">
+                <a asp-action="Create" class="btn entity-create-btn">
+                    + Create New Client
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="entity-table-card">
+        <table class="table entity-table mb-0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact Details</th>
+                    <th>Region</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@item.Name</td>
+                            <td>@item.ContactDetails</td>
+                            <td>@item.Region</td>
+                            <td class="text-center">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="entity-action-link entity-action-details">Details</a>
+                                <span class="entity-action-divider">|</span>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="entity-action-link entity-action-edit">Edit</a>
+                                <span class="entity-action-divider">|</span>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="entity-action-link entity-action-delete">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-muted">
+                            No clients found. Create your first client to get started.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
