@@ -1,4 +1,4 @@
-﻿@model TechMove.Models.Contract
+﻿@model TechMove.ApiDtos.ContractDto
 
 @{
     ViewData["Title"] = "Delete Contract";
@@ -22,7 +22,7 @@
         <div class="record-details">
             <div class="record-row">
                 <div class="record-label">Client</div>
-                <div class="record-value">@Model.Client?.Name</div>
+                <div class="record-value">@Model.ClientName</div>
             </div>
 
             <div class="record-row">

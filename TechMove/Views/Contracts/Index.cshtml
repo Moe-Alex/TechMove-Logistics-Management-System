@@ -1,9 +1,8 @@
-﻿@model IEnumerable<TechMove.Models.Contract>
+﻿@model IEnumerable<TechMove.ApiDtos.ContractDto>
 @using TechMove.Models.Enums
 
 @{
     ViewData["Title"] = "Contracts";
-    var role = ViewBag.Role as string;
 }
 
 <div class="entity-page">
@@ -16,7 +15,7 @@
         </div>
     </div>
 
-    @if (role == "Admin")
+    @if (ViewBag.IsAdmin == true)
     {
         <div class="filter-card mb-4">
             <div class="filter-card-header">
@@ -94,7 +93,7 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td class="fw-semibold">@item.Client?.Name</td>
+                            <td class="fw-semibold">@item.ClientName</td>
                             <td>@item.StartDate.ToString("yyyy/MM/dd")</td>
                             <td>@item.EndDate.ToString("yyyy/MM/dd")</td>
                             <td>@item.Status</td>

@@ -35,6 +35,7 @@ namespace TechMove
             builder.Services.AddScoped<ContractValidationService>();
             builder.Services.AddScoped<AuthService>();
             builder.Services.AddScoped<IClientApiClient, ClientApiClient>();
+            builder.Services.AddScoped<IContractApiClient, ContractApiClient>();
 
             builder.Services.AddSession(options =>
             {

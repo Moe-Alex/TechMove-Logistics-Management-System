@@ -1,4 +1,4 @@
-﻿@model TechMove.Models.Contract
+﻿@model TechMove.ApiDtos.UpdateContractDto
 @using TechMove.Models.Enums
 
 @{
@@ -14,12 +14,8 @@
             </div>
         </div>
 
-        <form asp-action="Edit" enctype="multipart/form-data" class="styled-form">
+        <form asp-action="Edit" asp-route-id="@ViewBag.ContractId" enctype="multipart/form-data" class="styled-form">
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="SignedAgreementFilePath" />
-            <input type="hidden" asp-for="SignedAgreementOriginalFileName" />
 
             <div class="form-group mb-3">
                 <label asp-for="ClientId" class="form-label styled-label">Client</label>
@@ -57,10 +53,10 @@
                 <span class="text-danger">@Html.ValidationMessage("signedAgreementFile")</span>
             </div>
 
-            @if (!string.IsNullOrWhiteSpace(Model.SignedAgreementFilePath))
+            @if (ViewBag.HasSignedAgreement == true)
             {
                 <div class="form-group mb-4">
-                    <a asp-action="DownloadAgreement" asp-route-id="@Model.Id" class="btn record-btn record-btn-secondary">
+                    <a asp-action="DownloadAgreement" asp-route-id="@ViewBag.ContractId" class="btn record-btn record-btn-secondary">
                         Download Current PDF
                     </a>
                 </div>
