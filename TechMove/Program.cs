@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TechMove.Data;
 using TechMove.Services;
+using TechMove.ApiClients;
 
 namespace TechMove
 {
@@ -18,9 +19,22 @@ namespace TechMove
 
             builder.Services.AddHttpClient<CurrencyApiService>();
 
+            builder.Services.AddHttpClient("TechMoveApi", client =>
+            {
+                var baseUrl = builder.Configuration["ApiSettings:BaseUrl"];
+
+                if (string.IsNullOrWhiteSpace(baseUrl))
+                {
+                    throw new InvalidOperationException("API BaseUrl is missing from appsettings.json.");
+                }
+
+                client.BaseAddress = new Uri(baseUrl);
+            });
+
             builder.Services.AddScoped<FileService>();
             builder.Services.AddScoped<ContractValidationService>();
             builder.Services.AddScoped<AuthService>();
+            builder.Services.AddScoped<IClientApiClient, ClientApiClient>();
 
             builder.Services.AddSession(options =>
             {

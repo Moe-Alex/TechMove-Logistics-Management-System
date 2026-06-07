@@ -1,4 +1,4 @@
-﻿@model TechMove.Models.Client
+﻿@model TechMove.ApiDtos.UpdateClientDto
 
 @{
     ViewData["Title"] = "Edit Client";
@@ -13,10 +13,8 @@
             </div>
         </div>
 
-        <form asp-action="Edit" class="styled-form">
+        <form asp-action="Edit" asp-route-id="@ViewBag.ClientId" class="styled-form">
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-
-            <input type="hidden" asp-for="Id" />
 
             <div class="form-group mb-3">
                 <label asp-for="Name" class="form-label styled-label"></label>

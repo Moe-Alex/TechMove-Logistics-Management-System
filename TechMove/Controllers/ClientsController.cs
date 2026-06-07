@@ -1,108 +1,177 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using TechMove.Data;
-using TechMove.Models;
+using TechMove.ApiClients;
+using TechMove.ApiDtos;
 
 namespace TechMove.Controllers
 {
     public class ClientsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IClientApiClient _clientApiClient;
 
-        public ClientsController(ApplicationDbContext context)
+        public ClientsController(IClientApiClient clientApiClient)
         {
-            _context = context;
+            _clientApiClient = clientApiClient;
         }
 
         private bool IsLoggedIn()
         {
-            return HttpContext.Session.GetString("Username") != null;
+            return !string.IsNullOrWhiteSpace(HttpContext.Session.GetString("Username"));
+        }
+
+        private IActionResult RedirectToLoginIfNeeded()
+        {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            return null!;
         }
 
         public async Task<IActionResult> Index()
         {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
-            return View(await _context.Clients.ToListAsync());
+            var redirect = RedirectToLoginIfNeeded();
+
+            if (redirect != null)
+            {
+                return redirect;
+            }
+
+            var clients = await _clientApiClient.GetClientsAsync();
+
+            return View(clients);
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
-            if (id == null) return NotFound();
+            var redirect = RedirectToLoginIfNeeded();
 
-            var client = await _context.Clients
-                .Include(c => c.Contracts)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            if (redirect != null)
+            {
+                return redirect;
+            }
 
-            if (client == null) return NotFound();
+            var client = await _clientApiClient.GetClientByIdAsync(id);
+
+            if (client == null)
+            {
+                return NotFound();
+            }
+
             return View(client);
         }
 
         public IActionResult Create()
         {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
+            var redirect = RedirectToLoginIfNeeded();
+
+            if (redirect != null)
+            {
+                return redirect;
+            }
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Client client)
+        public async Task<IActionResult> Create(CreateClientDto dto)
         {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
+            var redirect = RedirectToLoginIfNeeded();
 
-            if (ModelState.IsValid)
+            if (redirect != null)
             {
-                _context.Add(client);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return redirect;
             }
 
-            return View(client);
+            if (!ModelState.IsValid)
+            {
+                return View(dto);
+            }
+
+            var createdClient = await _clientApiClient.CreateClientAsync(dto);
+
+            if (createdClient == null)
+            {
+                ModelState.AddModelError(string.Empty, "The client could not be created. Please try again.");
+                return View(dto);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
-            if (id == null) return NotFound();
+            var redirect = RedirectToLoginIfNeeded();
 
-            var client = await _context.Clients.FindAsync(id);
-            if (client == null) return NotFound();
-            return View(client);
+            if (redirect != null)
+            {
+                return redirect;
+            }
+
+            var client = await _clientApiClient.GetClientByIdAsync(id);
+
+            if (client == null)
+            {
+                return NotFound();
+            }
+
+            var dto = new UpdateClientDto
+            {
+                Name = client.Name,
+                ContactDetails = client.ContactDetails,
+                Region = client.Region
+            };
+
+            ViewBag.ClientId = id;
+
+            return View(dto);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Client client)
+        public async Task<IActionResult> Edit(int id, UpdateClientDto dto)
         {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
-            if (id != client.Id) return NotFound();
+            var redirect = RedirectToLoginIfNeeded();
 
-            if (ModelState.IsValid)
+            if (redirect != null)
             {
-                try
-                {
-                    _context.Update(client);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ClientExists(client.Id)) return NotFound();
-                    throw;
-                }
-
-                return RedirectToAction(nameof(Index));
+                return redirect;
             }
 
-            return View(client);
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ClientId = id;
+                return View(dto);
+            }
+
+            var updated = await _clientApiClient.UpdateClientAsync(id, dto);
+
+            if (!updated)
+            {
+                ModelState.AddModelError(string.Empty, "The client could not be updated. Please try again.");
+                ViewBag.ClientId = id;
+                return View(dto);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
-            if (id == null) return NotFound();
+            var redirect = RedirectToLoginIfNeeded();
 
-            var client = await _context.Clients.FirstOrDefaultAsync(m => m.Id == id);
-            if (client == null) return NotFound();
+            if (redirect != null)
+            {
+                return redirect;
+            }
+
+            var client = await _clientApiClient.GetClientByIdAsync(id);
+
+            if (client == null)
+            {
+                return NotFound();
+            }
 
             return View(client);
         }
@@ -111,21 +180,21 @@ namespace TechMove.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
+            var redirect = RedirectToLoginIfNeeded();
 
-            var client = await _context.Clients.FindAsync(id);
-            if (client != null)
+            if (redirect != null)
             {
-                _context.Clients.Remove(client);
-                await _context.SaveChangesAsync();
+                return redirect;
+            }
+
+            var deleted = await _clientApiClient.DeleteClientAsync(id);
+
+            if (!deleted)
+            {
+                TempData["ErrorMessage"] = "The client could not be deleted. It may have linked contracts.";
             }
 
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool ClientExists(int id)
-        {
-            return _context.Clients.Any(e => e.Id == id);
         }
     }
 }
