@@ -8102,11 +8102,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\prog7311-part-2-submission-slot-2-ST10453511\\TechMove.Tests\\TechMove.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Tests\\TechMove.Tests.csproj",
       "projectName": "TechMove.Tests",
-      "projectPath": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\prog7311-part-2-submission-slot-2-ST10453511\\TechMove.Tests\\TechMove.Tests.csproj",
+      "projectPath": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Tests\\TechMove.Tests.csproj",
       "packagesPath": "C:\\Users\\Moegammad Yaaseen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\prog7311-part-2-submission-slot-2-ST10453511\\TechMove.Tests\\obj\\",
+      "outputPath": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -8129,8 +8129,8 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\prog7311-part-2-submission-slot-2-ST10453511\\TechMove\\TechMove.csproj": {
-              "projectPath": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\prog7311-part-2-submission-slot-2-ST10453511\\TechMove\\TechMove.csproj"
+            "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove\\TechMove.csproj": {
+              "projectPath": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove\\TechMove.csproj"
             }
           }
         }
