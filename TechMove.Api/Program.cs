@@ -23,6 +23,9 @@ builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<IContractRepository, ContractRepository>();
 builder.Services.AddScoped<IContractApiService, ContractApiService>();
 
+builder.Services.AddScoped<IServiceRequestRepository, ServiceRequestRepository>();
+builder.Services.AddScoped<IServiceRequestApiService, ServiceRequestApiService>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowMvcClient", policy =>

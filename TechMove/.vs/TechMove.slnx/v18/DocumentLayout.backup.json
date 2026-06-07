@@ -3,10 +3,34 @@
   "WorkspaceRootPath": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A5BCBA68-907A-4839-9D91-BD7C2B16E871}|..\\TechMove.Api\\TechMove.Api.csproj|c:\\users\\moegammad yaaseen\\onedrive\\desktop\\programming\\gr2-poe-submission-st10453511\\techmove.api\\controllers\\clientsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5BCBA68-907A-4839-9D91-BD7C2B16E871}|..\\TechMove.Api\\TechMove.Api.csproj|c:\\users\\moegammad yaaseen\\onedrive\\desktop\\programming\\gr2-poe-submission-st10453511\\techmove.api\\controllers\\servicerequestsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5BCBA68-907A-4839-9D91-BD7C2B16E871}|..\\TechMove.Api\\TechMove.Api.csproj|c:\\users\\moegammad yaaseen\\onedrive\\desktop\\programming\\gr2-poe-submission-st10453511\\techmove.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5BCBA68-907A-4839-9D91-BD7C2B16E871}|..\\TechMove.Api\\TechMove.Api.csproj|c:\\users\\moegammad yaaseen\\onedrive\\desktop\\programming\\gr2-poe-submission-st10453511\\techmove.api\\apiservices\\servicerequestapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5BCBA68-907A-4839-9D91-BD7C2B16E871}|..\\TechMove.Api\\TechMove.Api.csproj|c:\\users\\moegammad yaaseen\\onedrive\\desktop\\programming\\gr2-poe-submission-st10453511\\techmove.api\\apiservices\\iservicerequestapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5BCBA68-907A-4839-9D91-BD7C2B16E871}|..\\TechMove.Api\\TechMove.Api.csproj|c:\\users\\moegammad yaaseen\\onedrive\\desktop\\programming\\gr2-poe-submission-st10453511\\techmove.api\\repositories\\servicerequestrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5BCBA68-907A-4839-9D91-BD7C2B16E871}|..\\TechMove.Api\\TechMove.Api.csproj|c:\\users\\moegammad yaaseen\\onedrive\\desktop\\programming\\gr2-poe-submission-st10453511\\techmove.api\\repositories\\iservicerequestrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5BCBA68-907A-4839-9D91-BD7C2B16E871}|..\\TechMove.Api\\TechMove.Api.csproj|c:\\users\\moegammad yaaseen\\onedrive\\desktop\\programming\\gr2-poe-submission-st10453511\\techmove.api\\dtos\\updateservicerequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5BCBA68-907A-4839-9D91-BD7C2B16E871}|..\\TechMove.Api\\TechMove.Api.csproj|c:\\users\\moegammad yaaseen\\onedrive\\desktop\\programming\\gr2-poe-submission-st10453511\\techmove.api\\dtos\\createservicerequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5BCBA68-907A-4839-9D91-BD7C2B16E871}|..\\TechMove.Api\\TechMove.Api.csproj|c:\\users\\moegammad yaaseen\\onedrive\\desktop\\programming\\gr2-poe-submission-st10453511\\techmove.api\\dtos\\servicerequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5BCBA68-907A-4839-9D91-BD7C2B16E871}|..\\TechMove.Api\\TechMove.Api.csproj|c:\\users\\moegammad yaaseen\\onedrive\\desktop\\programming\\gr2-poe-submission-st10453511\\techmove.api\\controllers\\clientsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5BCBA68-907A-4839-9D91-BD7C2B16E871}|..\\TechMove.Api\\TechMove.Api.csproj|c:\\users\\moegammad yaaseen\\onedrive\\desktop\\programming\\gr2-poe-submission-st10453511\\techmove.api\\controllers\\contractsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -54,79 +78,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ClientsApiController.cs",
-              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Controllers\\ClientsApiController.cs",
-              "RelativeDocumentMoniker": "..\\TechMove.Api\\Controllers\\ClientsApiController.cs",
-              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Controllers\\ClientsApiController.cs",
-              "RelativeToolTip": "..\\TechMove.Api\\Controllers\\ClientsApiController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAABAAAAAAAAAA==",
+              "Title": "ServiceRequestsApiController.cs",
+              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Controllers\\ServiceRequestsApiController.cs",
+              "RelativeDocumentMoniker": "..\\TechMove.Api\\Controllers\\ServiceRequestsApiController.cs",
+              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Controllers\\ServiceRequestsApiController.cs",
+              "RelativeToolTip": "..\\TechMove.Api\\Controllers\\ServiceRequestsApiController.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAYwGEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-07T16:42:31.344Z",
+              "WhenOpened": "2026-06-07T17:50:16.023Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ContractsApiController.cs",
-              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Controllers\\ContractsApiController.cs",
-              "RelativeDocumentMoniker": "..\\TechMove.Api\\Controllers\\ContractsApiController.cs",
-              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Controllers\\ContractsApiController.cs",
-              "RelativeToolTip": "..\\TechMove.Api\\Controllers\\ContractsApiController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAABAAAAAAAAAA==",
+              "Title": "ServiceRequestApiService.cs",
+              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\ApiServices\\ServiceRequestApiService.cs",
+              "RelativeDocumentMoniker": "..\\TechMove.Api\\ApiServices\\ServiceRequestApiService.cs",
+              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\ApiServices\\ServiceRequestApiService.cs",
+              "RelativeToolTip": "..\\TechMove.Api\\ApiServices\\ServiceRequestApiService.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAgwJEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-07T16:41:39.457Z",
+              "WhenOpened": "2026-06-07T17:46:36.434Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ContractApiService.cs",
-              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\ApiServices\\ContractApiService.cs",
-              "RelativeDocumentMoniker": "..\\TechMove.Api\\ApiServices\\ContractApiService.cs",
-              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\ApiServices\\ContractApiService.cs",
-              "RelativeToolTip": "..\\TechMove.Api\\ApiServices\\ContractApiService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE8AAAABAAAAAAAAAA==",
+              "Title": "IServiceRequestApiService.cs",
+              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\ApiServices\\IServiceRequestApiService.cs",
+              "RelativeDocumentMoniker": "..\\TechMove.Api\\ApiServices\\IServiceRequestApiService.cs",
+              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\ApiServices\\IServiceRequestApiService.cs",
+              "RelativeToolTip": "..\\TechMove.Api\\ApiServices\\IServiceRequestApiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-07T16:32:05.252Z",
+              "WhenOpened": "2026-06-07T17:46:06.168Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UpdateContractStatusDto.cs",
-              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\UpdateContractStatusDto.cs",
-              "RelativeDocumentMoniker": "..\\TechMove.Api\\DTOs\\UpdateContractStatusDto.cs",
-              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\UpdateContractStatusDto.cs",
-              "RelativeToolTip": "..\\TechMove.Api\\DTOs\\UpdateContractStatusDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "ServiceRequestRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Repositories\\ServiceRequestRepository.cs",
+              "RelativeDocumentMoniker": "..\\TechMove.Api\\Repositories\\ServiceRequestRepository.cs",
+              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Repositories\\ServiceRequestRepository.cs",
+              "RelativeToolTip": "..\\TechMove.Api\\Repositories\\ServiceRequestRepository.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAowFIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-07T16:29:23.864Z",
+              "WhenOpened": "2026-06-07T17:44:31.049Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CreateContractDto.cs",
-              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\CreateContractDto.cs",
-              "RelativeDocumentMoniker": "..\\TechMove.Api\\DTOs\\CreateContractDto.cs",
-              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\CreateContractDto.cs",
-              "RelativeToolTip": "..\\TechMove.Api\\DTOs\\CreateContractDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAACAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "IServiceRequestRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Repositories\\IServiceRequestRepository.cs",
+              "RelativeDocumentMoniker": "..\\TechMove.Api\\Repositories\\IServiceRequestRepository.cs",
+              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Repositories\\IServiceRequestRepository.cs",
+              "RelativeToolTip": "..\\TechMove.Api\\Repositories\\IServiceRequestRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-07T16:14:07.895Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ContractDto.cs",
-              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\ContractDto.cs",
-              "RelativeDocumentMoniker": "..\\TechMove.Api\\DTOs\\ContractDto.cs",
-              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\ContractDto.cs",
-              "RelativeToolTip": "..\\TechMove.Api\\DTOs\\ContractDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-07T16:13:39.526Z",
+              "WhenOpened": "2026-06-07T17:44:01.013Z",
               "EditorCaption": ""
             },
             {
@@ -137,14 +148,126 @@
               "RelativeDocumentMoniker": "..\\TechMove.Api\\Program.cs",
               "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Program.cs",
               "RelativeToolTip": "..\\TechMove.Api\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-07T15:22:14.007Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UpdateServiceRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\UpdateServiceRequestDto.cs",
+              "RelativeDocumentMoniker": "..\\TechMove.Api\\DTOs\\UpdateServiceRequestDto.cs",
+              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\UpdateServiceRequestDto.cs",
+              "RelativeToolTip": "..\\TechMove.Api\\DTOs\\UpdateServiceRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T17:43:19.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CreateServiceRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\CreateServiceRequestDto.cs",
+              "RelativeDocumentMoniker": "..\\TechMove.Api\\DTOs\\CreateServiceRequestDto.cs",
+              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\CreateServiceRequestDto.cs",
+              "RelativeToolTip": "..\\TechMove.Api\\DTOs\\CreateServiceRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T17:42:44.539Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ServiceRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\ServiceRequestDto.cs",
+              "RelativeDocumentMoniker": "..\\TechMove.Api\\DTOs\\ServiceRequestDto.cs",
+              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\ServiceRequestDto.cs",
+              "RelativeToolTip": "..\\TechMove.Api\\DTOs\\ServiceRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T17:42:08.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 9,
+              "Title": "ClientsApiController.cs",
+              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Controllers\\ClientsApiController.cs",
+              "RelativeDocumentMoniker": "..\\TechMove.Api\\Controllers\\ClientsApiController.cs",
+              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Controllers\\ClientsApiController.cs",
+              "RelativeToolTip": "..\\TechMove.Api\\Controllers\\ClientsApiController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T16:42:31.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ContractsApiController.cs",
+              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Controllers\\ContractsApiController.cs",
+              "RelativeDocumentMoniker": "..\\TechMove.Api\\Controllers\\ContractsApiController.cs",
+              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Controllers\\ContractsApiController.cs",
+              "RelativeToolTip": "..\\TechMove.Api\\Controllers\\ContractsApiController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T16:41:39.457Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ContractApiService.cs",
+              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\ApiServices\\ContractApiService.cs",
+              "RelativeDocumentMoniker": "..\\TechMove.Api\\ApiServices\\ContractApiService.cs",
+              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\ApiServices\\ContractApiService.cs",
+              "RelativeToolTip": "..\\TechMove.Api\\ApiServices\\ContractApiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T16:32:05.252Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "UpdateContractStatusDto.cs",
+              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\UpdateContractStatusDto.cs",
+              "RelativeDocumentMoniker": "..\\TechMove.Api\\DTOs\\UpdateContractStatusDto.cs",
+              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\UpdateContractStatusDto.cs",
+              "RelativeToolTip": "..\\TechMove.Api\\DTOs\\UpdateContractStatusDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T16:29:23.864Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CreateContractDto.cs",
+              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\CreateContractDto.cs",
+              "RelativeDocumentMoniker": "..\\TechMove.Api\\DTOs\\CreateContractDto.cs",
+              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\CreateContractDto.cs",
+              "RelativeToolTip": "..\\TechMove.Api\\DTOs\\CreateContractDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T16:14:07.895Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ContractDto.cs",
+              "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\ContractDto.cs",
+              "RelativeDocumentMoniker": "..\\TechMove.Api\\DTOs\\ContractDto.cs",
+              "ToolTip": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\DTOs\\ContractDto.cs",
+              "RelativeToolTip": "..\\TechMove.Api\\DTOs\\ContractDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-07T16:13:39.526Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "IContractApiService.cs",
               "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\ApiServices\\IContractApiService.cs",
               "RelativeDocumentMoniker": "..\\TechMove.Api\\ApiServices\\IContractApiService.cs",
@@ -152,12 +275,11 @@
               "RelativeToolTip": "..\\TechMove.Api\\ApiServices\\IContractApiService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-07T16:31:42.722Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-07T16:31:42.722Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "ContractRepository.cs",
               "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Repositories\\ContractRepository.cs",
               "RelativeDocumentMoniker": "..\\TechMove.Api\\Repositories\\ContractRepository.cs",
@@ -165,12 +287,11 @@
               "RelativeToolTip": "..\\TechMove.Api\\Repositories\\ContractRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAE8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-07T16:11:02.788Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-07T16:11:02.788Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 12,
               "Title": "IContractRepository.cs",
               "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Repositories\\IContractRepository.cs",
               "RelativeDocumentMoniker": "..\\TechMove.Api\\Repositories\\IContractRepository.cs",
@@ -178,12 +299,11 @@
               "RelativeToolTip": "..\\TechMove.Api\\Repositories\\IContractRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-07T16:10:30.473Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-07T16:10:30.473Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 20,
               "Title": "ClientRepository.cs",
               "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Repositories\\ClientRepository.cs",
               "RelativeDocumentMoniker": "..\\TechMove.Api\\Repositories\\ClientRepository.cs",
@@ -191,12 +311,11 @@
               "RelativeToolTip": "..\\TechMove.Api\\Repositories\\ClientRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-07T16:09:33.577Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-07T16:09:33.577Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 19,
               "Title": "IClientRepository.cs",
               "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\Repositories\\IClientRepository.cs",
               "RelativeDocumentMoniker": "..\\TechMove.Api\\Repositories\\IClientRepository.cs",
@@ -204,12 +323,11 @@
               "RelativeToolTip": "..\\TechMove.Api\\Repositories\\IClientRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-07T16:09:00.126Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-07T16:09:00.126Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 18,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Moegammad Yaaseen\\OneDrive\\Desktop\\Programming\\gr2-poe-submission-ST10453511\\TechMove.Api\\appsettings.json",
               "RelativeDocumentMoniker": "..\\TechMove.Api\\appsettings.json",
@@ -217,8 +335,7 @@
               "RelativeToolTip": "..\\TechMove.Api\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-06-07T15:54:02.976Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-07T15:54:02.976Z"
             }
           ]
         }
