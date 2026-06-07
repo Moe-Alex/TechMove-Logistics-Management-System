@@ -1,231 +1,209 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using TechMove.Data;
-using TechMove.Models;
-using TechMove.Models.ViewModels;
-using TechMove.Services;
+using TechMove.ApiClients;
+using TechMove.ApiDtos;
+using TechMove.Models.Enums;
 
 namespace TechMove.Controllers
 {
     public class ServiceRequestsController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly ContractValidationService _contractValidationService;
-        private readonly CurrencyApiService _currencyApiService;
+        private readonly IServiceRequestApiClient _serviceRequestApiClient;
+        private readonly IContractApiClient _contractApiClient;
 
         public ServiceRequestsController(
-            ApplicationDbContext context,
-            ContractValidationService contractValidationService,
-            CurrencyApiService currencyApiService)
+            IServiceRequestApiClient serviceRequestApiClient,
+            IContractApiClient contractApiClient)
         {
-            _context = context;
-            _contractValidationService = contractValidationService;
-            _currencyApiService = currencyApiService;
+            _serviceRequestApiClient = serviceRequestApiClient;
+            _contractApiClient = contractApiClient;
         }
 
         private bool IsLoggedIn()
         {
-            return HttpContext.Session.GetString("Username") != null;
+            return !string.IsNullOrWhiteSpace(HttpContext.Session.GetString("Username"));
+        }
+
+        private IActionResult RedirectToLoginIfNeeded()
+        {
+            if (!IsLoggedIn())
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            return null!;
+        }
+
+        private async Task PopulateContractsDropDownAsync(int? selectedContractId = null)
+        {
+            var contracts = await _contractApiClient.GetContractsAsync(null, null, null);
+
+            ViewBag.ContractId = new SelectList(
+                contracts,
+                "Id",
+                "ClientName",
+                selectedContractId);
         }
 
         public async Task<IActionResult> Index()
         {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
+            var redirect = RedirectToLoginIfNeeded();
 
-            var serviceRequests = await _context.ServiceRequests
-                .Include(s => s.Contract)
-                .ThenInclude(c => c.Client)
-                .ToListAsync();
+            if (redirect != null)
+            {
+                return redirect;
+            }
+
+            var serviceRequests = await _serviceRequestApiClient.GetServiceRequestsAsync();
 
             return View(serviceRequests);
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
-            if (id == null) return NotFound();
+            var redirect = RedirectToLoginIfNeeded();
 
-            var serviceRequest = await _context.ServiceRequests
-                .Include(s => s.Contract)
-                .ThenInclude(c => c.Client)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            if (redirect != null)
+            {
+                return redirect;
+            }
 
-            if (serviceRequest == null) return NotFound();
+            var serviceRequest = await _serviceRequestApiClient.GetServiceRequestByIdAsync(id);
+
+            if (serviceRequest == null)
+            {
+                return NotFound();
+            }
 
             return View(serviceRequest);
         }
 
         public async Task<IActionResult> Create()
         {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
+            var redirect = RedirectToLoginIfNeeded();
 
-            var vm = new ServiceRequestCreateViewModel
+            if (redirect != null)
             {
-                Contracts = await _context.Contracts
-                    .Include(c => c.Client)
-                    .Select(c => new SelectListItem
-                    {
-                        Value = c.Id.ToString(),
-                        Text = $"Contract #{c.Id} - {c.Client!.Name} ({c.Status})"
-                    })
-                    .ToListAsync()
+                return redirect;
+            }
+
+            await PopulateContractsDropDownAsync();
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CreateServiceRequestDto dto)
+        {
+            var redirect = RedirectToLoginIfNeeded();
+
+            if (redirect != null)
+            {
+                return redirect;
+            }
+
+            if (!ModelState.IsValid)
+            {
+                await PopulateContractsDropDownAsync(dto.ContractId);
+                return View(dto);
+            }
+
+            var created = await _serviceRequestApiClient.CreateServiceRequestAsync(dto);
+
+            if (created == null)
+            {
+                ModelState.AddModelError(
+                    string.Empty,
+                    "The service request could not be created. Please check that the selected contract is valid and active.");
+
+                await PopulateContractsDropDownAsync(dto.ContractId);
+                return View(dto);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var redirect = RedirectToLoginIfNeeded();
+
+            if (redirect != null)
+            {
+                return redirect;
+            }
+
+            var serviceRequest = await _serviceRequestApiClient.GetServiceRequestByIdAsync(id);
+
+            if (serviceRequest == null)
+            {
+                return NotFound();
+            }
+
+            var dto = new UpdateServiceRequestDto
+            {
+                ContractId = serviceRequest.ContractId,
+                Description = serviceRequest.Description,
+                CostUSD = serviceRequest.CostUSD,
+                Status = serviceRequest.Status
             };
 
-            return View(vm);
+            ViewBag.ServiceRequestId = id;
+
+            await PopulateContractsDropDownAsync(serviceRequest.ContractId);
+
+            return View(dto);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ServiceRequestCreateViewModel vm)
+        public async Task<IActionResult> Edit(int id, UpdateServiceRequestDto dto)
         {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
+            var redirect = RedirectToLoginIfNeeded();
 
-            var contract = await _context.Contracts
-                .Include(c => c.Client)
-                .FirstOrDefaultAsync(c => c.Id == vm.ContractId);
-
-            if (contract == null)
+            if (redirect != null)
             {
-                ModelState.AddModelError("ContractId", "Selected contract was not found.");
-            }
-            else if (!_contractValidationService.CanCreateServiceRequest(contract.Status))
-            {
-                ModelState.AddModelError("ContractId", "A service request cannot be created for an Expired or On Hold contract.");
+                return redirect;
             }
 
-            var rate = await _currencyApiService.GetUsdToZarRateAsync();
-            if (rate == null)
+            if (!ModelState.IsValid)
             {
-                ModelState.AddModelError(string.Empty, "Could not retrieve the exchange rate at this time.");
-            }
-            else
-            {
-                vm.ExchangeRateUsed = rate.Value;
-                vm.LocalCostZAR = _currencyApiService.ConvertUsdToZar(vm.CostUSD, rate.Value);
+                ViewBag.ServiceRequestId = id;
+                await PopulateContractsDropDownAsync(dto.ContractId);
+                return View(dto);
             }
 
-            if (ModelState.IsValid)
-            {
-                var serviceRequest = new ServiceRequest
-                {
-                    ContractId = vm.ContractId,
-                    Description = vm.Description,
-                    CostUSD = vm.CostUSD,
-                    ExchangeRateUsed = vm.ExchangeRateUsed,
-                    LocalCostZAR = vm.LocalCostZAR,
-                    Status = vm.Status
-                };
+            var updated = await _serviceRequestApiClient.UpdateServiceRequestAsync(id, dto);
 
-                _context.Add(serviceRequest);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+            if (!updated)
+            {
+                ModelState.AddModelError(
+                    string.Empty,
+                    "The service request could not be updated. Please check that the selected contract is valid and active.");
+
+                ViewBag.ServiceRequestId = id;
+                await PopulateContractsDropDownAsync(dto.ContractId);
+                return View(dto);
             }
 
-            vm.Contracts = await _context.Contracts
-                .Include(c => c.Client)
-                .Select(c => new SelectListItem
-                {
-                    Value = c.Id.ToString(),
-                    Text = $"Contract #{c.Id} - {c.Client!.Name} ({c.Status})"
-                })
-                .ToListAsync();
-
-            return View(vm);
+            return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
-            if (id == null) return NotFound();
+            var redirect = RedirectToLoginIfNeeded();
 
-            var serviceRequest = await _context.ServiceRequests.FindAsync(id);
-            if (serviceRequest == null) return NotFound();
-
-            ViewBag.Contracts = await _context.Contracts
-                .Include(c => c.Client)
-                .Select(c => new SelectListItem
-                {
-                    Value = c.Id.ToString(),
-                    Text = $"Contract #{c.Id} - {c.Client!.Name} ({c.Status})"
-                })
-                .ToListAsync();
-
-            return View(serviceRequest);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, ServiceRequest serviceRequest)
-        {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
-            if (id != serviceRequest.Id) return NotFound();
-
-            var contract = await _context.Contracts.FirstOrDefaultAsync(c => c.Id == serviceRequest.ContractId);
-
-            if (contract == null)
+            if (redirect != null)
             {
-                ModelState.AddModelError("ContractId", "Selected contract was not found.");
-            }
-            else if (!_contractValidationService.CanCreateServiceRequest(contract.Status))
-            {
-                ModelState.AddModelError("ContractId", "A service request cannot be linked to an Expired or On Hold contract.");
+                return redirect;
             }
 
-            var rate = await _currencyApiService.GetUsdToZarRateAsync();
-            if (rate == null)
+            var serviceRequest = await _serviceRequestApiClient.GetServiceRequestByIdAsync(id);
+
+            if (serviceRequest == null)
             {
-                ModelState.AddModelError(string.Empty, "Could not retrieve the exchange rate at this time.");
+                return NotFound();
             }
-            else
-            {
-                serviceRequest.ExchangeRateUsed = rate.Value;
-                serviceRequest.LocalCostZAR = _currencyApiService.ConvertUsdToZar(serviceRequest.CostUSD, rate.Value);
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(serviceRequest);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ServiceRequestExists(serviceRequest.Id))
-                    {
-                        return NotFound();
-                    }
-
-                    throw;
-                }
-
-                return RedirectToAction(nameof(Index));
-            }
-
-            ViewBag.Contracts = await _context.Contracts
-                .Include(c => c.Client)
-                .Select(c => new SelectListItem
-                {
-                    Value = c.Id.ToString(),
-                    Text = $"Contract #{c.Id} - {c.Client!.Name} ({c.Status})"
-                })
-                .ToListAsync();
-
-            return View(serviceRequest);
-        }
-
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
-            if (id == null) return NotFound();
-
-            var serviceRequest = await _context.ServiceRequests
-                .Include(s => s.Contract)
-                .ThenInclude(c => c.Client)
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (serviceRequest == null) return NotFound();
 
             return View(serviceRequest);
         }
@@ -234,21 +212,21 @@ namespace TechMove.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (!IsLoggedIn()) return RedirectToAction("Login", "Account");
+            var redirect = RedirectToLoginIfNeeded();
 
-            var serviceRequest = await _context.ServiceRequests.FindAsync(id);
-            if (serviceRequest != null)
+            if (redirect != null)
             {
-                _context.ServiceRequests.Remove(serviceRequest);
-                await _context.SaveChangesAsync();
+                return redirect;
+            }
+
+            var deleted = await _serviceRequestApiClient.DeleteServiceRequestAsync(id);
+
+            if (!deleted)
+            {
+                TempData["ErrorMessage"] = "The service request could not be deleted.";
             }
 
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool ServiceRequestExists(int id)
-        {
-            return _context.ServiceRequests.Any(e => e.Id == id);
         }
     }
 }

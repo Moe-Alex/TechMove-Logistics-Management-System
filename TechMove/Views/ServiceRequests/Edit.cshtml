@@ -1,6 +1,5 @@
-﻿@model TechMove.Models.ServiceRequest
+﻿@model TechMove.ApiDtos.UpdateServiceRequestDto
 @using TechMove.Models.Enums
-@using Microsoft.AspNetCore.Mvc.Rendering
 
 @{
     ViewData["Title"] = "Edit Service Request";
@@ -17,16 +16,14 @@
             </div>
         </div>
 
-        <form asp-action="Edit" class="styled-form">
+        <form asp-action="Edit" asp-route-id="@ViewBag.ServiceRequestId" class="styled-form">
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="ExchangeRateUsed" />
-            <input type="hidden" asp-for="LocalCostZAR" />
 
             <div class="form-group mb-3">
                 <label asp-for="ContractId" class="form-label styled-label">Contract</label>
-                <select asp-for="ContractId" asp-items="ViewBag.Contracts" class="form-control styled-input"></select>
+                <select asp-for="ContractId" asp-items="ViewBag.ContractId" class="form-control styled-input">
+                    <option value="">-- Select Contract --</option>
+                </select>
                 <span asp-validation-for="ContractId" class="text-danger"></span>
             </div>
 
@@ -48,13 +45,11 @@
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
 
-            @if (Model.ExchangeRateUsed > 0)
-            {
-                <div class="exchange-info-box">
-                    <p><strong>Current Exchange Rate:</strong> @Model.ExchangeRateUsed</p>
-                    <p><strong>Current Local Cost ZAR:</strong> @Model.LocalCostZAR</p>
-                </div>
-            }
+            <div class="exchange-info-box">
+                <p>
+                    The exchange rate and ZAR amount will be recalculated automatically after saving.
+                </p>
+            </div>
 
             <div class="record-actions">
                 <input type="submit" value="Save Changes" class="btn record-btn record-btn-primary" />

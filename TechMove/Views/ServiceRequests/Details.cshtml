@@ -1,4 +1,4 @@
-﻿@model TechMove.Models.ServiceRequest
+﻿@model TechMove.ApiDtos.ServiceRequestDto
 
 @{
     ViewData["Title"] = "Service Request Details";
@@ -23,7 +23,7 @@
 
             <div class="record-row">
                 <div class="record-label">Client</div>
-                <div class="record-value">@Model.Contract?.Client?.Name</div>
+                <div class="record-value">@Model.ClientName</div>
             </div>
 
             <div class="record-row">

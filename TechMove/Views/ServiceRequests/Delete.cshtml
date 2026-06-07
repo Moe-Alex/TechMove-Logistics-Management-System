@@ -1,4 +1,4 @@
-﻿@model TechMove.Models.ServiceRequest
+﻿@model TechMove.ApiDtos.ServiceRequestDto
 
 @{
     ViewData["Title"] = "Delete Service Request";
@@ -27,7 +27,7 @@
 
             <div class="record-row">
                 <div class="record-label">Client</div>
-                <div class="record-value">@Model.Contract?.Client?.Name</div>
+                <div class="record-value">@Model.ClientName</div>
             </div>
 
             <div class="record-row">
@@ -56,8 +56,7 @@
             </div>
         </div>
 
-        <form asp-action="Delete" class="record-actions">
-            <input type="hidden" asp-for="Id" />
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="record-actions">
             <input type="submit" value="Delete Service Request" class="btn record-btn record-btn-danger" />
             <a asp-action="Index" class="btn record-btn record-btn-secondary">Back to List</a>
         </form>

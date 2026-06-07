@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TechMove.Models.ServiceRequest>
+﻿@model IEnumerable<TechMove.ApiDtos.ServiceRequestDto>
 
 @{
     ViewData["Title"] = "Service Requests";
@@ -19,6 +19,13 @@
             </div>
         </div>
     </div>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="filter-warning mb-4">
+            @TempData["ErrorMessage"]
+        </div>
+    }
 
     <div class="entity-table-card">
         <table class="table entity-table mb-0">
@@ -41,7 +48,7 @@
                     {
                         <tr>
                             <td class="fw-semibold">@item.ContractId</td>
-                            <td>@item.Contract?.Client?.Name</td>
+                            <td>@item.ClientName</td>
                             <td>@item.Description</td>
                             <td>@item.CostUSD</td>
                             <td>@item.ExchangeRateUsed</td>
