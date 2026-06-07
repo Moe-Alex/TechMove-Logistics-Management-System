@@ -162,3 +162,12 @@ C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST104
 C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove.Api\obj\Debug\net10.0\TechMove.Api.genruntimeconfig.cache
 C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove.Api\obj\Debug\net10.0\ref\TechMove.Api.dll
 C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove.Api\bin\Debug\net10.0\TechMove.Api.staticwebassets.runtime.json
+C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove.Api\bin\Debug\net10.0\firebase-service-account.json
+C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove.Api\bin\Debug\net10.0\FirebaseAdmin.dll
+C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove.Api\bin\Debug\net10.0\Google.Api.Gax.dll
+C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove.Api\bin\Debug\net10.0\Google.Api.Gax.Rest.dll
+C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove.Api\bin\Debug\net10.0\Google.Apis.dll
+C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove.Api\bin\Debug\net10.0\Google.Apis.Auth.dll
+C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove.Api\bin\Debug\net10.0\Google.Apis.Core.dll
+C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove.Api\bin\Debug\net10.0\System.Management.dll
+C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove.Api\bin\Debug\net10.0\runtimes\win\lib\net7.0\System.Management.dll

@@ -5,6 +5,37 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/auth/verify": {
+      "post": {
+        "tags": [
+          "AuthApi"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyFirebaseTokenRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyFirebaseTokenRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyFirebaseTokenRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/clients": {
       "get": {
         "tags": [
@@ -1003,10 +1034,23 @@
           }
         },
         "additionalProperties": false
+      },
+      "VerifyFirebaseTokenRequest": {
+        "type": "object",
+        "properties": {
+          "idToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       }
     }
   },
   "tags": [
+    {
+      "name": "AuthApi"
+    },
     {
       "name": "ClientsApi"
     },

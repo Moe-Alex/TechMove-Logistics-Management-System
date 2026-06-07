@@ -3,8 +3,22 @@ using TechMove.Data;
 using TechMove.Api.Repositories;
 using TechMove.Api.Services;
 using TechMove.Services;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var firebaseServiceAccountPath = Path.Combine(
+    builder.Environment.ContentRootPath,
+    "firebase-service-account.json");
+
+if (File.Exists(firebaseServiceAccountPath))
+{
+    FirebaseApp.Create(new AppOptions
+    {
+        Credential = GoogleCredential.FromFile(firebaseServiceAccountPath)
+    });
+}
 
 builder.Services.AddControllers();
 
@@ -27,6 +41,8 @@ builder.Services.AddScoped<IContractApiService, ContractApiService>();
 
 builder.Services.AddScoped<IServiceRequestRepository, ServiceRequestRepository>();
 builder.Services.AddScoped<IServiceRequestApiService, ServiceRequestApiService>();
+
+builder.Services.AddScoped<IFirebaseAuthService, FirebaseAuthService>();
 
 builder.Services.AddCors(options =>
 {

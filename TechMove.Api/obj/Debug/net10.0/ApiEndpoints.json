@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "TechMove.Api.Controllers.AuthApiController",
+    "Method": "VerifyToken",
+    "RelativePath": "api/auth/verify",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "TechMove.Api.Controllers.VerifyFirebaseTokenRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TechMove.Api.Controllers.ClientsApiController",
     "Method": "GetClients",
     "RelativePath": "api/clients",
