@@ -14,10 +14,17 @@ var firebaseServiceAccountPath = Path.Combine(
 
 if (File.Exists(firebaseServiceAccountPath))
 {
-    FirebaseApp.Create(new AppOptions
+    try
     {
-        Credential = GoogleCredential.FromFile(firebaseServiceAccountPath)
-    });
+        FirebaseApp.GetInstance("[DEFAULT]");
+    }
+    catch
+    {
+        FirebaseApp.Create(new AppOptions
+        {
+            Credential = GoogleCredential.FromFile(firebaseServiceAccountPath)
+        });
+    }
 }
 
 builder.Services.AddControllers();
