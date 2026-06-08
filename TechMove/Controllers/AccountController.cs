@@ -1,48 +1,60 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TechMove.Models.ViewModels;
-using TechMove.Services;
+using TechMove.ApiClients;
+using TechMove.ApiDtos;
 
 namespace TechMove.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly AuthService _authService;
+        private readonly IFirebaseAuthClient _firebaseAuthClient;
 
-        public AccountController(AuthService authService)
+        public AccountController(IFirebaseAuthClient firebaseAuthClient)
         {
-            _authService = authService;
+            _firebaseAuthClient = firebaseAuthClient;
         }
 
         [HttpGet]
         public IActionResult Login()
         {
-            if (HttpContext.Session.GetString("Username") != null)
+            if (!string.IsNullOrWhiteSpace(HttpContext.Session.GetString("Username")))
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            return View();
+            return View(new LoginViewModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var user = _authService.ValidateUser(model.Username, model.Password);
+            var firebaseUser = await _firebaseAuthClient.LoginAsync(model.Email, model.Password);
 
-            if (user == null)
+            if (firebaseUser == null || string.IsNullOrWhiteSpace(firebaseUser.IdToken))
             {
-                ModelState.AddModelError(string.Empty, "Invalid username or password.");
+                ModelState.AddModelError(string.Empty, "Invalid email or password.");
                 return View(model);
             }
 
-            HttpContext.Session.SetString("Username", user.Username);
-            HttpContext.Session.SetString("Role", user.Role.ToString());
+            var role = GetRoleFromEmail(firebaseUser.Email);
+
+            if (role == null)
+            {
+                ModelState.AddModelError(string.Empty, "This Firebase user is not authorised to access TechMove.");
+                return View(model);
+            }
+
+            var displayName = role == "Admin" ? "Admin" : "User";
+
+            HttpContext.Session.SetString("Username", displayName);
+            HttpContext.Session.SetString("Role", role);
+            HttpContext.Session.SetString("FirebaseEmail", firebaseUser.Email);
+            HttpContext.Session.SetString("FirebaseIdToken", firebaseUser.IdToken);
 
             return RedirectToAction("Index", "Home");
         }
@@ -50,12 +62,20 @@ namespace TechMove.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
+
             return RedirectToAction(nameof(Login));
         }
 
-        public IActionResult AccessDenied()
+        private static string? GetRoleFromEmail(string email)
         {
-            return View();
+            var normalisedEmail = email.Trim().ToLowerInvariant();
+
+            return normalisedEmail switch
+            {
+                "admin@gmail.com" => "Admin",
+                "user@gmail.com" => "User",
+                _ => null
+            };
         }
     }
 }

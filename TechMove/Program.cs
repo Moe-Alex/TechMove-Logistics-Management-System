@@ -37,6 +37,7 @@ namespace TechMove
             builder.Services.AddScoped<IClientApiClient, ClientApiClient>();
             builder.Services.AddScoped<IContractApiClient, ContractApiClient>();
             builder.Services.AddScoped<IServiceRequestApiClient, ServiceRequestApiClient>();
+            builder.Services.AddScoped<IFirebaseAuthClient, FirebaseAuthClient>();
 
             builder.Services.AddSession(options =>
             {
