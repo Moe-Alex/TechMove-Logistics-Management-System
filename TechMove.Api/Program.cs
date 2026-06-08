@@ -63,6 +63,32 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    var maxRetries = 10;
+    var delay = TimeSpan.FromSeconds(5);
+
+    for (var attempt = 1; attempt <= maxRetries; attempt++)
+    {
+        try
+        {
+            dbContext.Database.Migrate();
+            break;
+        }
+        catch
+        {
+            if (attempt == maxRetries)
+            {
+                throw;
+            }
+
+            Thread.Sleep(delay);
+        }
+    }
+}
+
 app.UseSwagger();
 app.UseSwaggerUI(); 
 
