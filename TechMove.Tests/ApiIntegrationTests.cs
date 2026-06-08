@@ -1,11 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using TechMove.Api.DTOs;
-using TechMove.Data;
-using TechMove.Models;
 using TechMove.Models.Enums;
 using Xunit;
 
