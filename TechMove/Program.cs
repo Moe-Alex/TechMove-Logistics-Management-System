@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using TechMove.Data;
-using TechMove.Services;
 using TechMove.ApiClients;
 
 namespace TechMove
@@ -11,13 +8,7 @@ namespace TechMove
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
             builder.Services.AddControllersWithViews();
-
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-            builder.Services.AddHttpClient<CurrencyApiService>();
 
             builder.Services.AddHttpClient("TechMoveApi", client =>
             {
@@ -31,9 +22,6 @@ namespace TechMove
                 client.BaseAddress = new Uri(baseUrl);
             });
 
-            builder.Services.AddScoped<FileService>();
-            builder.Services.AddScoped<ContractValidationService>();
-            builder.Services.AddScoped<AuthService>();
             builder.Services.AddScoped<IClientApiClient, ClientApiClient>();
             builder.Services.AddScoped<IContractApiClient, ContractApiClient>();
             builder.Services.AddScoped<IServiceRequestApiClient, ServiceRequestApiClient>();
@@ -48,7 +36,6 @@ namespace TechMove
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");

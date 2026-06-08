@@ -61,16 +61,6 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\uploads\agreements\39c7e972-cc37-43de-83bc-760911a6006b.pdf
-wwwroot\uploads\agreements\b8863ebb-0702-4564-977e-8102ba9eea0e.pdf
-wwwroot\uploads\agreements\c742a68c-0382-431c-b908-f91dad77ddec.pdf
-wwwroot\uploads\agreements\cbced4cd-d09e-4239-a3be-b026ccb6e83e.pdf
-wwwroot\uploads\agreements\e2ba73ba-6dce-4f97-aa9f-7649289346fb.pdf
-wwwroot\uploads\agreements\b72d4104-5a11-42e2-a1cf-89007a4acad4.pdf
-wwwroot\uploads\agreements\45f9acb7-0b07-4340-acc1-27dfdd390b1a.pdf
-wwwroot\uploads\agreements\9310bee2-121b-42a8-abb7-1e8ed3353084.pdf
-wwwroot\uploads\agreements\b8de169d-18f3-4806-b170-1f394c60a632.pdf
-wwwroot\uploads\agreements\ca954557-ba6e-4da7-9d47-a0ae8d23eb56.pdf
 C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove\wwwroot\favicon.ico
 C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove\wwwroot\lib\jquery\dist\jquery.slim.min.map
 C:\Users\Moegammad Yaaseen\OneDrive\Desktop\Programming\gr2-poe-submission-ST10453511\TechMove\wwwroot\lib\jquery\dist\jquery.slim.min.js

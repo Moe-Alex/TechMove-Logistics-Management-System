@@ -20,7 +20,12 @@ namespace TechMove.Services
                 var baseUrl = _configuration["ExchangeRateApi:BaseUrl"];
                 var apiKey = _configuration["ExchangeRateApi:ApiKey"];
 
-                var requestUrl = $"https://v6.exchangerate-api.com/v6/b24f1c18771f1fe939e085a9/latest/USD";
+                if (string.IsNullOrWhiteSpace(baseUrl) || string.IsNullOrWhiteSpace(apiKey))
+                {
+                    return null;
+                }
+
+                var requestUrl = $"{baseUrl.TrimEnd('/')}/{apiKey}/latest/USD";
 
                 var response = await _httpClient.GetAsync(requestUrl);
 
@@ -33,13 +38,17 @@ namespace TechMove.Services
 
                 using var document = JsonDocument.Parse(json);
 
-                if (document.RootElement.TryGetProperty("conversion_rates", out var conversionRates) &&
-                    conversionRates.TryGetProperty("ZAR", out var zarRate))
+                if (!document.RootElement.TryGetProperty("conversion_rates", out var conversionRates))
                 {
-                    return zarRate.GetDecimal();
+                    return null;
                 }
 
-                return null;
+                if (!conversionRates.TryGetProperty("ZAR", out var zarRateElement))
+                {
+                    return null;
+                }
+
+                return zarRateElement.GetDecimal();
             }
             catch
             {
@@ -47,9 +56,9 @@ namespace TechMove.Services
             }
         }
 
-        public decimal ConvertUsdToZar(decimal usdAmount, decimal exchangeRate)
+        public decimal ConvertUsdToZar(decimal amountUsd, decimal exchangeRate)
         {
-            return Math.Round(usdAmount * exchangeRate, 2);
+            return Math.Round(amountUsd * exchangeRate, 2);
         }
     }
 }
